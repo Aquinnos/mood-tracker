@@ -3,7 +3,7 @@
 A cozy, modern mood tracker app built with **React + TypeScript + Vite + Tailwind CSS**.
 Track your daily moods, add notes, and visualize your emotional trends on a beautiful calendar!
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-green?style=for-the-badge)](https://your-demo-link.com)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-green?style=for-the-badge)](https://mood-tracker-zepr.onrender.com)
 
 ![Mood Tracker Screenshot](./screenshot.png)
 
@@ -48,7 +48,7 @@ Track your daily moods, add notes, and visualize your emotional trends on a beau
 
 ## 🌍 Online Demo
 
-Check out the live demo: [https://your-demo-link.com](https://your-demo-link.com)
+Check out the live demo: [https://mood-tracker-zepr.onrender.com](https://mood-tracker-zepr.onrender.com)
 
 ## 👥 Authors
 
