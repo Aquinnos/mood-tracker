@@ -35,11 +35,9 @@ export function MoodCalendar() {
   const monthStart = startOfMonth(currentDate);
   const monthEnd = endOfMonth(currentDate);
   const days = eachDayOfInterval({ start: monthStart, end: monthEnd });
-  const startWeekDay = getDay(monthStart); // 0 (Sun) - 6 (Sat)
-  const endWeekDay = getDay(monthEnd); // 0 (Sun) - 6 (Sat)
-  // Liczba pustych komórek na początku
+  const startWeekDay = getDay(monthStart);
+  const endWeekDay = getDay(monthEnd);
   const leadingEmpty = Array.from({ length: startWeekDay });
-  // Liczba pustych komórek na końcu, by siatka była pełna (dopełniamy do 7)
   const trailingEmpty = Array.from({ length: (7 - 1 - endWeekDay + 7) % 7 });
 
   const handleDayClick = (date: Date) => {
@@ -104,7 +102,6 @@ export function MoodCalendar() {
           ))}
         </div>
         <div className="grid grid-cols-7 gap-1 md:gap-2 w-full">
-          {/* Puste komórki na początek tygodnia */}
           {leadingEmpty.map((_, i) => (
             <div key={`empty-start-${i}`} className="" />
           ))}
@@ -157,7 +154,6 @@ export function MoodCalendar() {
               </div>
             );
           })}
-          {/* Puste komórki na koniec tygodnia */}
           {trailingEmpty.map((_, i) => (
             <div key={`empty-end-${i}`} className="" />
           ))}

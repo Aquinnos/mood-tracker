@@ -50,14 +50,12 @@ export function MoodProvider({ children }: { children: ReactNode }) {
     setMoods((prev) => {
       const existing = prev.find((m) => m.date === mood.date);
       if (existing) {
-        // Nadpisz istniejący wpis
         return prev.map((m) =>
           m.date === mood.date
             ? { ...m, emoji: mood.emoji, note: mood.note }
             : m
         );
       }
-      // Dodaj nowy jeśli nie istnieje
       const newMood: Mood = {
         ...mood,
         id: crypto.randomUUID(),
