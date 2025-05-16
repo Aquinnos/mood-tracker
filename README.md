@@ -56,7 +56,7 @@ Check out the live demo: [https://your-demo-link.com](https://your-demo-link.com
 
 ## 🏆 Hackathon
 
-This project was created for the [Your Hackathon Name](https://www.codecircuit.ai/) 🚀
+This project was created for the [CodeCircuit](https://www.codecircuit.ai/) 🚀
 
 ## 📄 License
 
