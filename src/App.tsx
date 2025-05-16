@@ -3,13 +3,14 @@ import { MoodProvider, useMood } from './context/MoodContext';
 import { format } from 'date-fns';
 import { MoodCalendar } from './components/MoodCalendar';
 import { MoodStats } from './components/MoodStats';
+import { MoodTrend } from './components/MoodTrend';
 
 const MOODS = [
-  { name: 'happy', src: '/src/assets/images/happy.svg', alt: 'Happy' },
-  { name: 'neutral', src: '/src/assets/images/neutral.svg', alt: 'Neutral' },
-  { name: 'sad', src: '/src/assets/images/sad.svg', alt: 'Sad' },
-  { name: 'angry', src: '/src/assets/images/angry.svg', alt: 'Angry' },
-  { name: 'sleepy', src: '/src/assets/images/sleepy.svg', alt: 'Sleepy' },
+  { name: 'happy', src: '/happy.svg', alt: 'Happy' },
+  { name: 'neutral', src: '/neutral.svg', alt: 'Neutral' },
+  { name: 'sad', src: '/sad.svg', alt: 'Sad' },
+  { name: 'angry', src: '/angry.svg', alt: 'Angry' },
+  { name: 'sleepy', src: '/sleepy.svg', alt: 'Sleepy' },
 ];
 
 function MoodTracker() {
@@ -52,14 +53,19 @@ function MoodTracker() {
                   key={mood.name}
                   type="button"
                   onClick={() => setSelectedMood(mood.name)}
-                  className={`p-2 rounded-full border-2 transition-all bg-white hover:border-primary ${
+                  tabIndex={0}
+                  className={`p-2 rounded-xl transition-all bg-white hover:border-primary pointer-events-auto ${
                     selectedMood === mood.name
-                      ? 'border-primary ring-2 ring-primary'
+                      ? 'border-primary ring-2 ring-[#ff90bb]'
                       : 'border-transparent'
                   }`}
                   aria-label={mood.alt}
                 >
-                  <img src={mood.src} alt={mood.alt} className="w-10 h-10" />
+                  <img
+                    src={mood.src}
+                    alt={mood.alt}
+                    className="w-8 h-8 md:w-15 md:h-10"
+                  />
                 </button>
               ))}
             </div>
@@ -81,7 +87,7 @@ function MoodTracker() {
           <button
             type="submit"
             disabled={!selectedMood}
-            className="w-full bg-primary text-white py-3 px-4 rounded-lg text-lg font-semibold shadow-md hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="w-full bg-primary text-white py-3 px-4 rounded-lg text-lg font-semibold shadow-md hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all pointer-events-auto"
           >
             Save Mood
           </button>
@@ -89,6 +95,7 @@ function MoodTracker() {
 
         <div className="space-y-8">
           <MoodCalendar />
+          <MoodTrend />
           <MoodStats />
         </div>
       </div>

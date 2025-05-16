@@ -1,54 +1,63 @@
-# React + TypeScript + Vite
+# Mood Tracker 😃📅
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A cozy, modern mood tracker app built with **React + TypeScript + Vite + Tailwind CSS**.
+Track your daily moods, add notes, and visualize your emotional trends on a beautiful calendar!
 
-Currently, two official plugins are available:
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Open-green?style=for-the-badge)](https://your-demo-link.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+![Mood Tracker Screenshot](./screenshot.png)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Emoji-based mood selection** (custom SVGs)
+- **Colorful, responsive calendar** with mood icons
+- **Add notes** to each day
+- **Edit and delete** mood entries
+- **Mood filtering** (see only selected moods)
+- **Mood statistics** and **trend chart** (Chart.js)
+- **Mobile-friendly** and super cozy UI (Comfortaa font)
+- **Polished animations** and pastel color palette
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Quick Start
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Clone the repo:**
+   ```bash
+   git clone https://github.com/Aquinnos/mood-tracker.git
+   cd mood-tracker
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the app locally:**
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🛠️ Tech Stack
+
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Chart.js](https://www.chartjs.org/) + [react-chartjs-2](https://react-chartjs-2.js.org/)
+- [date-fns](https://date-fns.org/)
+
+## 🌍 Online Demo
+
+Check out the live demo: [https://your-demo-link.com](https://your-demo-link.com)
+
+## 👥 Authors
+
+- [Krystian Synakowski](https://github.com/Aquinnos)
+
+## 🏆 Hackathon
+
+This project was created for the [Your Hackathon Name](https://www.codecircuit.ai/) 🚀
+
+## 📄 License
+
+MIT

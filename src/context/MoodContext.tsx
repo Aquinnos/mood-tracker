@@ -1,10 +1,10 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
 
 export type Mood = {
   id: string;
   date: string;
-  emoji: string; // teraz to będzie nazwa nastroju, np. 'happy'
+  emoji: string;
   note: string;
 };
 
@@ -17,16 +17,18 @@ export const MOOD_COLORS: Record<string, string> = {
 };
 
 export const MOOD_ICONS: Record<string, string> = {
-  happy: './src/assets/images/happy.svg',
-  neutral: './src/assets/images/neutral.svg',
-  sad: './src/assets/images/sad.svg',
-  angry: './src/assets/images/angry.svg',
-  sleepy: './src/assets/images/sleepy.svg',
+  happy: '/happy.svg',
+  neutral: '/neutral.svg',
+  sad: '/sad.svg',
+  angry: '/angry.svg',
+  sleepy: '/sleepy.svg',
 };
 
 type MoodContextType = {
   moods: Mood[];
   addMood: (mood: Omit<Mood, 'id'>) => void;
+  editMood: (id: string, updates: Partial<Omit<Mood, 'id' | 'date'>>) => void;
+  getMoodByDate: (date: string) => Mood | undefined;
   deleteMood: (id: string) => void;
   getMoodColor: (mood: string) => string;
   getMoodIcon: (mood: string) => string;
@@ -40,16 +42,41 @@ export function MoodProvider({ children }: { children: ReactNode }) {
     return savedMoods ? JSON.parse(savedMoods) : [];
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     localStorage.setItem('moods', JSON.stringify(moods));
   }, [moods]);
 
   const addMood = (mood: Omit<Mood, 'id'>) => {
-    const newMood: Mood = {
-      ...mood,
-      id: crypto.randomUUID(),
-    };
-    setMoods((prev) => [...prev, newMood]);
+    setMoods((prev) => {
+      const existing = prev.find((m) => m.date === mood.date);
+      if (existing) {
+        // Nadpisz istniejący wpis
+        return prev.map((m) =>
+          m.date === mood.date
+            ? { ...m, emoji: mood.emoji, note: mood.note }
+            : m
+        );
+      }
+      // Dodaj nowy jeśli nie istnieje
+      const newMood: Mood = {
+        ...mood,
+        id: crypto.randomUUID(),
+      };
+      return [...prev, newMood];
+    });
+  };
+
+  const editMood = (
+    id: string,
+    updates: Partial<Omit<Mood, 'id' | 'date'>>
+  ) => {
+    setMoods((prev) =>
+      prev.map((mood) => (mood.id === id ? { ...mood, ...updates } : mood))
+    );
+  };
+
+  const getMoodByDate = (date: string) => {
+    return moods.find((mood) => mood.date === date);
   };
 
   const deleteMood = (id: string) => {
@@ -66,7 +93,15 @@ export function MoodProvider({ children }: { children: ReactNode }) {
 
   return (
     <MoodContext.Provider
-      value={{ moods, addMood, deleteMood, getMoodColor, getMoodIcon }}
+      value={{
+        moods,
+        addMood,
+        editMood,
+        getMoodByDate,
+        deleteMood,
+        getMoodColor,
+        getMoodIcon,
+      }}
     >
       {children}
     </MoodContext.Provider>

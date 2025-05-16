@@ -19,7 +19,7 @@ export function MoodStats() {
   )[0];
 
   return (
-    <div className="bg-white/90 rounded-2xl shadow-xl p-6 border border-[#f8f8e1]">
+    <div className="bg-white/90 rounded-2xl shadow-xl p-3 md:p-6 border border-[#f8f8e1]">
       <h2 className="text-xl font-bold mb-4 text-primary drop-shadow-sm">
         Mood Statistics
       </h2>
@@ -29,13 +29,13 @@ export function MoodStats() {
           <h3 className="text-sm font-semibold text-accent mb-2">
             Last 7 Days
           </h3>
-          <div className="flex gap-2">
+          <div className="flex gap-1 md:gap-2">
             {last7Days.map((date) => {
               const mood = moods.find((m) => m.date === date);
               return (
                 <div
                   key={date}
-                  className={`flex-1 aspect-square rounded-xl flex flex-col items-center justify-center border-2 shadow-inner ${
+                  className={`flex-1 aspect-square rounded-xl flex flex-col items-center justify-center border-2 shadow-inner min-w-[36px] md:min-w-[48px] min-h-[36px] md:min-h-[48px] p-3 md:p-2 text-xs md:text-sm ${
                     mood ? getMoodColor(mood.emoji) : 'bg-[#f8f8e1]'
                   }`}
                 >
