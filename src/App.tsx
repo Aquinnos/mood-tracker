@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import { MoodCalendar } from './components/MoodCalendar';
 import { MoodStats } from './components/MoodStats';
 import { MoodTrend } from './components/MoodTrend';
+import { Toaster } from 'react-hot-toast';
 
 const MOODS = [
   { name: 'happy', src: '/happy.svg', alt: 'Happy' },
@@ -106,7 +107,22 @@ function MoodTracker() {
 function App() {
   return (
     <MoodProvider>
-      <MoodTracker />
+      <div className="min-h-screen bg-background">
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: '#fff',
+              color: '#333',
+              boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+              borderRadius: '8px',
+              padding: '12px 16px',
+            },
+          }}
+        />
+        <MoodTracker />
+      </div>
     </MoodProvider>
   );
 }

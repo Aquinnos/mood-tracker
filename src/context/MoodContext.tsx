@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import type { ReactNode } from 'react';
+import toast from 'react-hot-toast';
 
 export type Mood = {
   id: string;
@@ -47,9 +48,16 @@ export function MoodProvider({ children }: { children: ReactNode }) {
   }, [moods]);
 
   const addMood = (mood: Omit<Mood, 'id'>) => {
+    const today = new Date().toISOString().split('T')[0];
+    if (mood.date > today) {
+      toast.error('Cannot add mood for future dates!');
+      return;
+    }
+
     setMoods((prev) => {
       const existing = prev.find((m) => m.date === mood.date);
       if (existing) {
+        toast.success('Mood updated!');
         return prev.map((m) =>
           m.date === mood.date
             ? { ...m, emoji: mood.emoji, note: mood.note }
@@ -60,6 +68,7 @@ export function MoodProvider({ children }: { children: ReactNode }) {
         ...mood,
         id: crypto.randomUUID(),
       };
+      toast.success('Mood added!');
       return [...prev, newMood];
     });
   };
@@ -71,6 +80,7 @@ export function MoodProvider({ children }: { children: ReactNode }) {
     setMoods((prev) =>
       prev.map((mood) => (mood.id === id ? { ...mood, ...updates } : mood))
     );
+    toast.success('Mood updated!');
   };
 
   const getMoodByDate = (date: string) => {
@@ -79,6 +89,7 @@ export function MoodProvider({ children }: { children: ReactNode }) {
 
   const deleteMood = (id: string) => {
     setMoods((prev) => prev.filter((mood) => mood.id !== id));
+    toast.success('Mood deleted!');
   };
 
   const getMoodColor = (mood: string) => {
