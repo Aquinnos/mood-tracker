@@ -145,7 +145,7 @@ export function MoodCalendar() {
                   <div className="mt-2 bg-white/80 rounded p-1 shadow-inner border border-[#f8f8e1] w-full flex flex-col items-center">
                     <button
                       onClick={(e) => handleDelete(mood.id, e)}
-                      className="text-red-500 hover:text-red-700 transition-colors font-bold text-xs pointer-events-auto"
+                      className="text-red-500 hover:text-red-700 transition-colors font-bold text-[10px] sm:text-xs pointer-events-auto z-10"
                     >
                       Delete
                     </button>
