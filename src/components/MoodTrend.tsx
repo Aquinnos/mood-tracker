@@ -1,4 +1,4 @@
-import { useMood } from '../context/MoodContext';
+import { useMood } from '../hooks/useMood';
 import { format, subDays } from 'date-fns';
 import {
   Chart as ChartJS,

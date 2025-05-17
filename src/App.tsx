@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { MoodProvider, useMood } from './context/MoodContext';
+import { MoodProvider } from './context/MoodContext';
+import { useMood } from './hooks/useMood';
 import { format } from 'date-fns';
 import { MoodCalendar } from './components/MoodCalendar';
 import { MoodStats } from './components/MoodStats';

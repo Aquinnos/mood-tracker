@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMood } from '../context/MoodContext';
+import { useMood } from '../hooks/useMood';
 import {
   format,
   startOfMonth,

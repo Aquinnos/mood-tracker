@@ -1,41 +1,8 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { useState } from 'react';
 import type { ReactNode } from 'react';
 import toast from 'react-hot-toast';
-
-export type Mood = {
-  id: string;
-  date: string;
-  emoji: string;
-  note: string;
-};
-
-export const MOOD_COLORS: Record<string, string> = {
-  happy: 'bg-primary',
-  neutral: 'bg-secondary',
-  sad: 'bg-accent',
-  angry: 'bg-red-400',
-  sleepy: 'bg-gray-400',
-};
-
-export const MOOD_ICONS: Record<string, string> = {
-  happy: '/happy.svg',
-  neutral: '/neutral.svg',
-  sad: '/sad.svg',
-  angry: '/angry.svg',
-  sleepy: '/sleepy.svg',
-};
-
-type MoodContextType = {
-  moods: Mood[];
-  addMood: (mood: Omit<Mood, 'id'>) => void;
-  editMood: (id: string, updates: Partial<Omit<Mood, 'id' | 'date'>>) => void;
-  getMoodByDate: (date: string) => Mood | undefined;
-  deleteMood: (id: string) => void;
-  getMoodColor: (mood: string) => string;
-  getMoodIcon: (mood: string) => string;
-};
-
-const MoodContext = createContext<MoodContextType | undefined>(undefined);
+import { MOOD_COLORS, MOOD_ICONS } from '../constants/mood';
+import { MoodContext, type Mood } from './MoodContextDefinition';
 
 export function MoodProvider({ children }: { children: ReactNode }) {
   const [moods, setMoods] = useState<Mood[]>(() => {
@@ -115,12 +82,4 @@ export function MoodProvider({ children }: { children: ReactNode }) {
       {children}
     </MoodContext.Provider>
   );
-}
-
-export function useMood() {
-  const context = useContext(MoodContext);
-  if (context === undefined) {
-    throw new Error('useMood must be used within a MoodProvider');
-  }
-  return context;
 }
